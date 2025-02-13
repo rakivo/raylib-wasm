@@ -26,12 +26,14 @@ pub mod ffi {
         pub fn IsKeyDown(_: KeyboardKey) -> bool;
         pub fn GetFPS() -> i32;
         pub fn GetMousePosition() -> Vector2;
+        pub fn MeasureText(_: *const i8, _: i32) -> i32;
     }
 }
 
 // Functions that do not require passing a structure
 pub use ffi::{
     DrawFPS,
+    MeasureText,
     BeginDrawing,
     EndDrawing,
     SetTargetFPS,
