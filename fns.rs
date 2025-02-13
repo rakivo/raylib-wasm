@@ -1,6 +1,6 @@
 #[cfg(feature = "web")]
 use crate::web_fns::*;
-#[cfg(feature = "native")]
+#[cfg(not(feature = "web"))]
 use crate::native_fns::*;
 use crate::structs::*;
 use crate::small_c_string::run_with_cstr;
