@@ -1,11 +1,14 @@
-use crate::{Rectangle, KeyboardKey, Vector2, Color};
+use crate::{Rectangle, KeyboardKey, Vector2, Color, Texture2D};
 
 use std::ptr::addr_of;
 
 pub mod ffi {
     use super::*;
 
-    extern {
+    #[link(wasm_import_module = "env")]
+    extern "C" {
+        pub fn LoadTexture(result_ptr: *mut Texture2D, file_path: *const i8);
+        pub fn DrawTexture(_: u32, _: i32, _: i32, _: *const Color);
         pub fn GetMousePositionX() -> f32;
         pub fn GetMousePositionY() -> f32;
         pub fn DrawCircle(_: i32, _: i32, _: f32, _: *const Color);
@@ -72,6 +75,18 @@ pub unsafe fn ClearBackground(color: Color) {
 #[inline(always)]
 pub unsafe fn DrawText(text: *const i8, x: i32, y: i32, size: i32, color: Color) {
     ffi::DrawText(text, x, y, size, addr_of!(color));
+}
+
+#[inline(always)]
+pub unsafe fn LoadTexture(file_path: *const i8) -> Texture2D {
+    let mut tex = std::mem::MaybeUninit::<Texture2D>::uninit();
+    ffi::LoadTexture(tex.as_mut_ptr(), file_path);
+    tex.assume_init()
+}
+
+#[inline(always)]
+pub unsafe fn DrawTexture(texture: Texture2D, x: i32, y: i32, tint: Color) {
+    ffi::DrawTexture(texture.id, x, y, addr_of!(tint));
 }
 
 #[inline(always)]
