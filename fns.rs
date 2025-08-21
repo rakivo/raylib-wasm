@@ -1,9 +1,9 @@
-#[cfg(feature = "web")]
-use crate::web_fns::*;
 #[cfg(not(feature = "web"))]
 use crate::native_fns::*;
-use crate::structs::*;
 use crate::small_c_string::run_with_cstr;
+use crate::structs::*;
+#[cfg(feature = "web")]
+use crate::web_fns::*;
 
 #[inline]
 pub fn init_window(w: i32, h: i32, title: &str) {
@@ -13,10 +13,12 @@ pub fn init_window(w: i32, h: i32, title: &str) {
 }
 
 #[inline]
-pub fn measure_text(text: &str, font_size: usize) {
+pub fn measure_text(text: &str, font_size: usize) -> i32 {
+    let mut m: i32 = 0;
     run_with_cstr(text.as_bytes(), |text| unsafe {
-        MeasureText(text.as_ptr(), font_size as i32);
-    })
+        m = MeasureText(text.as_ptr(), font_size as i32);
+    });
+    return m;
 }
 
 #[inline]
@@ -24,4 +26,19 @@ pub fn draw_text(text: &str, x: i32, y: i32, font_size: usize, color: Color) {
     run_with_cstr(text.as_bytes(), |text| unsafe {
         DrawText(text.as_ptr(), x, y, font_size as i32, color);
     })
+}
+
+#[inline]
+pub fn load_texture(filename: &str) -> Texture {
+    let mut t: Texture = Texture {
+        id: 0,
+        width: 0,
+        height: 0,
+        mipmaps: 0,
+        format: 0,
+    };
+    run_with_cstr(filename.as_bytes(), |filename| unsafe {
+        t = LoadTexture(filename.as_ptr());
+    });
+    return t;
 }
