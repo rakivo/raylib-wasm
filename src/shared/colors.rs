@@ -1,5 +1,7 @@
+use crate::prelude::Color;
+
 /// Light Gray
-pub const LIGHTGRAY: crate::Color = crate::Color {
+pub const LIGHTGRAY: Color = Color {
     r: 200,
     g: 200,
     b: 200,
@@ -7,7 +9,7 @@ pub const LIGHTGRAY: crate::Color = crate::Color {
 };
 
 /// Gray
-pub const GRAY: crate::Color = crate::Color {
+pub const GRAY: Color = Color {
     r: 130,
     g: 130,
     b: 130,
@@ -15,7 +17,7 @@ pub const GRAY: crate::Color = crate::Color {
 };
 
 /// Dark Gray
-pub const DARKGRAY: crate::Color = crate::Color {
+pub const DARKGRAY: Color = Color {
     r: 80,
     g: 80,
     b: 80,
@@ -23,7 +25,7 @@ pub const DARKGRAY: crate::Color = crate::Color {
 };
 
 /// Yellow
-pub const YELLOW: crate::Color = crate::Color {
+pub const YELLOW: Color = Color {
     r: 253,
     g: 249,
     b: 0,
@@ -31,7 +33,7 @@ pub const YELLOW: crate::Color = crate::Color {
 };
 
 /// Gold
-pub const GOLD: crate::Color = crate::Color {
+pub const GOLD: Color = Color {
     r: 255,
     g: 203,
     b: 0,
@@ -39,7 +41,7 @@ pub const GOLD: crate::Color = crate::Color {
 };
 
 /// Orange
-pub const ORANGE: crate::Color = crate::Color {
+pub const ORANGE: Color = Color {
     r: 255,
     g: 161,
     b: 0,
@@ -47,7 +49,7 @@ pub const ORANGE: crate::Color = crate::Color {
 };
 
 /// Pink
-pub const PINK: crate::Color = crate::Color {
+pub const PINK: Color = Color {
     r: 255,
     g: 109,
     b: 194,
@@ -55,7 +57,7 @@ pub const PINK: crate::Color = crate::Color {
 };
 
 /// Red
-pub const RED: crate::Color = crate::Color {
+pub const RED: Color = Color {
     r: 230,
     g: 41,
     b: 55,
@@ -63,7 +65,7 @@ pub const RED: crate::Color = crate::Color {
 };
 
 /// Maroon
-pub const MAROON: crate::Color = crate::Color {
+pub const MAROON: Color = Color {
     r: 190,
     g: 33,
     b: 55,
@@ -71,7 +73,7 @@ pub const MAROON: crate::Color = crate::Color {
 };
 
 /// Green
-pub const GREEN: crate::Color = crate::Color {
+pub const GREEN: Color = Color {
     r: 0,
     g: 228,
     b: 48,
@@ -79,7 +81,7 @@ pub const GREEN: crate::Color = crate::Color {
 };
 
 /// Lime
-pub const LIME: crate::Color = crate::Color {
+pub const LIME: Color = Color {
     r: 0,
     g: 158,
     b: 47,
@@ -87,7 +89,7 @@ pub const LIME: crate::Color = crate::Color {
 };
 
 /// Dark Green
-pub const DARKGREEN: crate::Color = crate::Color {
+pub const DARKGREEN: Color = Color {
     r: 0,
     g: 117,
     b: 44,
@@ -95,7 +97,7 @@ pub const DARKGREEN: crate::Color = crate::Color {
 };
 
 /// Sky Blue
-pub const SKYBLUE: crate::Color = crate::Color {
+pub const SKYBLUE: Color = Color {
     r: 102,
     g: 191,
     b: 255,
@@ -103,7 +105,7 @@ pub const SKYBLUE: crate::Color = crate::Color {
 };
 
 /// Blue
-pub const BLUE: crate::Color = crate::Color {
+pub const BLUE: Color = Color {
     r: 0,
     g: 121,
     b: 241,
@@ -111,7 +113,7 @@ pub const BLUE: crate::Color = crate::Color {
 };
 
 /// Dark Blue
-pub const DARKBLUE: crate::Color = crate::Color {
+pub const DARKBLUE: Color = Color {
     r: 0,
     g: 82,
     b: 172,
@@ -119,7 +121,7 @@ pub const DARKBLUE: crate::Color = crate::Color {
 };
 
 /// Purple
-pub const PURPLE: crate::Color = crate::Color {
+pub const PURPLE: Color = Color {
     r: 200,
     g: 122,
     b: 255,
@@ -127,7 +129,7 @@ pub const PURPLE: crate::Color = crate::Color {
 };
 
 /// Violet
-pub const VIOLET: crate::Color = crate::Color {
+pub const VIOLET: Color = Color {
     r: 135,
     g: 60,
     b: 190,
@@ -135,7 +137,7 @@ pub const VIOLET: crate::Color = crate::Color {
 };
 
 /// Dark Purple
-pub const DARKPURPLE: crate::Color = crate::Color {
+pub const DARKPURPLE: Color = Color {
     r: 112,
     g: 31,
     b: 126,
@@ -143,7 +145,7 @@ pub const DARKPURPLE: crate::Color = crate::Color {
 };
 
 /// Beige
-pub const BEIGE: crate::Color = crate::Color {
+pub const BEIGE: Color = Color {
     r: 211,
     g: 176,
     b: 131,
@@ -151,7 +153,7 @@ pub const BEIGE: crate::Color = crate::Color {
 };
 
 /// Brown
-pub const BROWN: crate::Color = crate::Color {
+pub const BROWN: Color = Color {
     r: 127,
     g: 106,
     b: 79,
@@ -159,7 +161,7 @@ pub const BROWN: crate::Color = crate::Color {
 };
 
 /// Dark Brown
-pub const DARKBROWN: crate::Color = crate::Color {
+pub const DARKBROWN: Color = Color {
     r: 76,
     g: 63,
     b: 47,
@@ -167,7 +169,7 @@ pub const DARKBROWN: crate::Color = crate::Color {
 };
 
 /// White
-pub const WHITE: crate::Color = crate::Color {
+pub const WHITE: Color = Color {
     r: 255,
     g: 255,
     b: 255,
@@ -175,7 +177,7 @@ pub const WHITE: crate::Color = crate::Color {
 };
 
 /// Black
-pub const BLACK: crate::Color = crate::Color {
+pub const BLACK: Color = Color {
     r: 0,
     g: 0,
     b: 0,
@@ -183,7 +185,7 @@ pub const BLACK: crate::Color = crate::Color {
 };
 
 /// Blank (Transparent)
-pub const BLANK: crate::Color = crate::Color {
+pub const BLANK: Color = Color {
     r: 0,
     g: 0,
     b: 0,
@@ -191,7 +193,7 @@ pub const BLANK: crate::Color = crate::Color {
 };
 
 /// Magenta
-pub const MAGENTA: crate::Color = crate::Color {
+pub const MAGENTA: Color = Color {
     r: 255,
     g: 0,
     b: 255,
@@ -199,7 +201,7 @@ pub const MAGENTA: crate::Color = crate::Color {
 };
 
 /// My own White (raylib logo)
-pub const RAYWHITE: crate::Color = crate::Color {
+pub const RAYWHITE: Color = Color {
     r: 245,
     g: 245,
     b: 245,

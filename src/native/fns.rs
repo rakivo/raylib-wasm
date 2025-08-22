@@ -1,4 +1,6 @@
-use crate::structs::*;
+use crate::shared::structs::*;
+use crate::shared::enums::KeyboardKey;
+
 pub type __gnuc_va_list = __builtin_va_list;
 pub type va_list = __builtin_va_list;
 pub type __builtin_va_list = [__va_list_tag; 1usize];
@@ -596,7 +598,7 @@ extern "C" {
 extern "C" {
     pub fn PlayAutomationEvent(event: AutomationEvent);
 }
-use crate::KeyboardKey;
+
 extern "C" {
     pub fn IsKeyPressed(key: KeyboardKey) -> bool;
 }
@@ -621,6 +623,7 @@ extern "C" {
 extern "C" {
     pub fn SetExitKey(key: KeyboardKey);
 }
+
 extern "C" {
     pub fn IsGamepadAvailable(gamepad: ::std::os::raw::c_int) -> bool;
 }

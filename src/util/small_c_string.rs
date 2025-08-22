@@ -1,4 +1,4 @@
-/// Took from the standard library of [Rust](https://github.com/rust-lang/rust)
+//! `run_with_cstr` function extracted from Rust standard library
 
 use std::{ptr, slice};
 use std::mem::MaybeUninit;
@@ -12,7 +12,7 @@ const MAX_STACK_ALLOCATION: usize = 384;
 const MAX_STACK_ALLOCATION: usize = 32;
 
 #[inline]
-pub fn run_with_cstr(bytes: &[u8], f: impl FnOnce(&CStr)) {
+pub fn run_with_cstr<R>(bytes: &[u8], f: impl FnOnce(&CStr) -> R) -> R {
     // Dispatch and dyn erase the closure type to prevent mono bloat.
     // See https://github.com/rust-lang/rust/pull/121101.
     if bytes.len() >= MAX_STACK_ALLOCATION {
@@ -25,10 +25,11 @@ pub fn run_with_cstr(bytes: &[u8], f: impl FnOnce(&CStr)) {
 /// # Safety
 ///
 /// `bytes` must have a length less than `MAX_STACK_ALLOCATION`.
-unsafe fn run_with_cstr_stack(
+#[inline]
+unsafe fn run_with_cstr_stack<R>(
     bytes: &[u8],
-    f: impl FnOnce(&CStr),
-) {
+    f: impl FnOnce(&CStr) -> R,
+) -> R {
     let mut buf = MaybeUninit::<[u8; MAX_STACK_ALLOCATION]>::uninit();
     let buf_ptr = buf.as_mut_ptr() as *mut u8;
 
@@ -44,7 +45,7 @@ unsafe fn run_with_cstr_stack(
 }
 
 #[inline]
-fn run_with_cstr_allocating(bytes: &[u8], f: impl FnOnce(&CStr)) {
+fn run_with_cstr_allocating<R>(bytes: &[u8], f: impl FnOnce(&CStr) -> R) -> R {
     match CString::new(bytes) {
         Ok(s) => f(&s),
         Err(_) => panic!("file name contained an unexpected NUL byte")

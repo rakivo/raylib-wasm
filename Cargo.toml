@@ -18,4 +18,3 @@ native = []
 
 [lib]
 crate-type = ["rlib"]
-path = "raylib.rs"

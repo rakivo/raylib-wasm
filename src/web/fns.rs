@@ -1,10 +1,12 @@
-use crate::{Rectangle, KeyboardKey, Vector2, Color, Texture2D};
+use crate::shared::enums::KeyboardKey;
+use crate::shared::structs::{Color, Rectangle, Vector2, Texture2D};
 
 use std::ptr::addr_of;
 
-pub mod ffi {
+mod ffi {
     use super::*;
 
+    // All functions that are currently supported in the browser
     #[link(wasm_import_module = "env")]
     extern "C" {
         pub fn LoadTexture(result_ptr: *mut Texture2D, file_path: *const i8);
@@ -33,7 +35,7 @@ pub mod ffi {
     }
 }
 
-// Functions that do not require passing a structure
+// Functions that do not require passing a structure (re-exporting as is)
 pub use ffi::{
     DrawFPS,
     MeasureText,
@@ -49,8 +51,8 @@ pub use ffi::{
 };
 
 // This functions are mandatory because without them the whole thing won't work.
-// You can't just pass a structure into a function and get it fields in JS via memory buffer,
-// To this thing to work we've got create this layer of abstraction.
+// You can't just pass a structure into a WASM function and get it fields in JS via memory buffer,
+// for this thing to work we have this layer of abstraction.
 
 #[inline(always)]
 pub unsafe fn DrawLine(sx: i32, sy: i32, ex: i32, ey: i32, color: Color) {
