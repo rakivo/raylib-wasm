@@ -1,18 +1,15 @@
 # raylib-wasm
 - Library lets you run your raylib games in your browser and on your machine with NO CHANGES in your code.
 
-- We don't use any emscripten's and shit, only pure Rust and pure JavaScript, no dependencies (you only need to have wasm and raylib installed).
+- We don't use emscripten or anything like that, just pure Rust and pure JavaScript, no dependencies (you only need to have wasm and raylib installed).
 
-- You just need to setup your project properly and start your game development!
+- You can see a great example of using this library here: <https://github.com/rakivo/rust-raylib-hotreload-wasm-template>. This is a template, so you can start a new repo with it.
 
-- You can see a great example of using this library here: <https://github.com/rakivo/rust-raylib-hotreload-wasm-template>. This is a template, so you can start a new repo. with it.
-
-# Cons
-> Of course not all raylib functions are supported in browser atm, but if anyone is interested in this library, you can make a pull request, so I can see if I need to continue work on this peace of Software.
+> [!NOTE]
+> Of course not all raylib functions are supported in browser at the moment, but if anyone is interested in this library, you can make a pull request, so I can see if I need to continue work on this peace of software.
 
 # A process of porting a function from native to JS
-> First, you need to check, if the function any structs, or it should be reimplemented manually in `JS`, because it can't work properly in browser as it does natively, do that:
-- Go to `web_fns.rs`, add your desired function to the `extern` block in the `ffi` module:
+- Go to `src/web/fns.rs`, add your desired function to the `extern` block in the `ffi` module:
 ```rs
 extern "C" {
     // ...
@@ -20,14 +17,14 @@ extern "C" {
 }
 ```
 
-- If the function accepts any structs, you need to pass these structs via their address in memory:
+- If the function accepts any structs, you need to pass them via their address in memory:
 ```rs
 pub unsafe fn DrawRectangleRec(rec: Rectangle, color: Color) {
     ffi::DrawRectangleRec(std::ptr::addr_of!(rec), std::ptr::addr_of!(color));
 }
 ```
 
-- Then, go to `raylib.js`, find the `WebAssembly.instantiateStreaming(fetch(WASM_PATH), {...` line, and implement your function in `JS` there. But keep in mind:
+- Then, go to `raylib.js`, find the `WebAssembly.instantiateStreaming(fetch(WASM_PATH), {...` line, and implement your function in `JS` there. For instance, this is how `DrawRectangleRec` is implemented:
 ```js
 WebAssembly.instantiateStreaming(fetch(WASM_PATH), {
     "env": make_environment({
@@ -42,3 +39,7 @@ WebAssembly.instantiateStreaming(fetch(WASM_PATH), {
     })
 }
 ```
+
+## Inspiration
+
+This project was inspired by [tsoding/zozlib.js](https://github.com/tsoding/zozlib.js) and [tsoding/snake-c-wasm](https://github.com/tsoding/snake-c-wasm).
